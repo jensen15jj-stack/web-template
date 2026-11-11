@@ -9,6 +9,7 @@ import { camelize } from '../../util/string';
 import { propTypes } from '../../util/types';
 
 import FallbackPage from './FallbackPage';
+import SectionHeroSplit from './SectionHeroSplit';
 import { ASSET_NAME } from './LandingPage.duck';
 import { fetchFeaturedListings } from '../../ducks/featuredListings.duck';
 import { getListingsById } from '../../ducks/marketplaceData.duck';
@@ -18,12 +19,35 @@ const PageBuilder = loadable(() =>
   import(/* webpackChunkName: "PageBuilder" */ '../PageBuilder/PageBuilder')
 );
 
+// American Neighbor: custom section components for the landing page.
+const SECTION_COMPONENTS = {
+  heroSplit: { component: SectionHeroSplit },
+};
+
+// The landing page content is still edited in Console.
+// If the first section of the page uses the Hero or Article template,
+// it is rendered with the custom split hero (title, description, call to action and
+// background image are used; content blocks are not shown in the hero).
+const HERO_SOURCE_TYPES = ['hero', 'article'];
+export const withCustomSections = pageData => {
+  const sections = pageData?.sections;
+  if (!Array.isArray(sections) || sections.length === 0) {
+    return pageData;
+  }
+  const [first, ...rest] = sections;
+  if (!HERO_SOURCE_TYPES.includes(first?.sectionType)) {
+    return pageData;
+  }
+  return { ...pageData, sections: [{ ...first, sectionType: 'heroSplit' }, ...rest] };
+};
+
 export const LandingPageComponent = props => {
   const { pageAssetsData, inProgress, error } = props;
 
   return (
     <PageBuilder
-      pageAssetsData={pageAssetsData?.[camelize(ASSET_NAME)]?.data}
+      pageAssetsData={withCustomSections(pageAssetsData?.[camelize(ASSET_NAME)]?.data)}
+      options={{ sectionComponents: SECTION_COMPONENTS }}
       inProgress={inProgress}
       error={error}
       fallbackPage={<FallbackPage error={error} />}

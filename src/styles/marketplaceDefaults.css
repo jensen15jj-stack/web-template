@@ -83,8 +83,26 @@
   --colorStatusFinalState: var(--colorGrey600);
 
   /* ================ Font ================ */
-  --fontFamily: -apple-system, BlinkMacSystemFont, 'Inter', Helvetica, Arial, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --fontFamily: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  /* American Neighbor: headings use Plus Jakarta Sans (loaded in public/index.html) */
+  --fontFamilyHeading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+
+  /* ================ American Neighbor brand tokens ================ */
+  --anNavy: #0a2341;
+  --anNavyLight: #143a66;
+  --anNavySubtle: #e8edf4;
+  --anGold: #c8a14b;
+  --anGoldDark: #9a7722;
+  --anGoldSubtle: #f7efdc;
+  --anInk: #1b2430;
+  --anMuted: #5b6573;
+  --anLine: #e3e6ec;
+  --anBackground: #f6f7f9;
+  --anRadiusCard: 14px;
+  --anRadiusPill: 999px;
+  --anShadowCard: 0 1px 2px rgba(10, 35, 65, 0.06), 0 8px 24px rgba(10, 35, 65, 0.07);
 
   --fontWeightRegular: 400;
   --fontWeightMedium: 500;
@@ -1012,7 +1030,7 @@ textarea {
   /* Button borders */
   /* Default button has no borders */
   border: none;
-  border-radius: var(--borderRadiusMedium);
+  border-radius: var(--anRadiusPill);
 
   /* Button colors */
   /* Default button uses marketplace color */
@@ -1063,7 +1081,7 @@ textarea {
   /* Button borders */
   /* Primary button has no borders */
   border: none;
-  border-radius: var(--borderRadiusMedium);
+  border-radius: var(--anRadiusPill);
 
   /* Button colors */
   /* Primary button uses success color */
@@ -1113,7 +1131,7 @@ textarea {
 
   /* Button borders */
   border: none;
-  border-radius: var(--borderRadiusMedium);
+  border-radius: var(--anRadiusPill);
 
   background-color: var(--colorPrimaryButton);
   color: var(--colorWhite);
@@ -1168,7 +1186,7 @@ textarea {
   border-width: 1px;
   border-style: solid;
   border-color: var(--colorGrey100);
-  border-radius: var(--borderRadiusMedium);
+  border-radius: var(--anRadiusPill);
 
   /* Button colors: secondary */
   background-color: var(--colorSecondaryButton);
@@ -1231,7 +1249,7 @@ textarea {
   border-width: 1px;
   border-style: solid;
   border-color: var(--colorGrey100);
-  border-radius: var(--borderRadiusMedium);
+  border-radius: var(--anRadiusPill);
 
   /* Button colors: secondary */
   background-color: var(--colorSecondaryButton);
@@ -1565,4 +1583,23 @@ textarea {
   @media (--viewportMedium) {
     margin-top: 32px;
   }
+}
+
+/* ================ American Neighbor: heading typeface ================ */
+
+h1,
+h2,
+h3,
+h4,
+.h1,
+.h2,
+.h3,
+.h4 {
+  font-family: var(--fontFamilyHeading);
+  letter-spacing: -0.01em;
+}
+
+h1,
+.h1 {
+  font-weight: var(--fontWeightHeavy);
 }

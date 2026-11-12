@@ -271,3 +271,55 @@
   line-height: 19px;
   color: var(--anMuted);
 }
+
+/* Photo collage: up to four photos in a 2 x 2 grid, with staggered columns */
+.collage {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+
+  @media (--viewportMedium) {
+    gap: 16px;
+  }
+}
+
+.collageItem {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: var(--anNavySubtle);
+  box-shadow: var(--anShadowCard);
+
+  &:nth-child(odd) {
+    transform: translateY(16px);
+  }
+}
+
+/* Reassurance strip under the hero */
+.trustStrip {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px 28px 24px;
+  list-style: none;
+
+  @media (--viewportMedium) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    padding: 0 32px 36px 32px;
+  }
+}
+
+.trustPoint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: var(--fontWeightSemiBold);
+  color: var(--anNavy);
+}

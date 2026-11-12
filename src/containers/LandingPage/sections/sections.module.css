@@ -229,16 +229,15 @@
     align-items: center;
     text-align: center;
 
-    /* connector line between step numbers */
+    /* dashed connector line from this step's number to the next one */
     &:not(:last-child)::after {
       content: '';
       position: absolute;
-      top: 28px;
-      left: calc(50% + 40px);
-      width: calc(100% - 48px);
-      height: 2px;
-      background-image: linear-gradient(to right, var(--anGold) 50%, transparent 50%);
-      background-size: 12px 2px;
+      top: 27px;
+      left: calc(50% + 44px);
+      right: calc(-50% + 12px);
+      height: 0;
+      border-top: 2px dashed var(--anGold);
     }
   }
 }

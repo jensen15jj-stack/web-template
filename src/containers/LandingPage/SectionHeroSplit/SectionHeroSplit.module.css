@@ -91,6 +91,12 @@
     border-radius: 16px;
     box-shadow: var(--anShadowCard);
   }
+
+  /* Navy text on the gold search button for readable contrast */
+  & button[type='submit'] {
+    color: var(--anNavy);
+    font-weight: var(--fontWeightBold);
+  }
 }
 
 .ctaButton {

@@ -85,6 +85,9 @@ const SectionColumns = props => {
 
   const hasHeaderFields = hasDataInFields([title, description, callToAction], fieldOptions);
   const hasBlocks = blocks?.length > 0;
+  // Blocks are shown as cards, except on dark sections (white text) or inside another container.
+  const isDarkAppearance =
+    appearance?.fieldType === 'customAppearance' && appearance?.textColor === 'white';
 
   return (
     <SectionContainer
@@ -105,6 +108,7 @@ const SectionColumns = props => {
         <div
           className={classNames(defaultClasses.blockContainer, getColumnCSS(numColumns), {
             [css.noSidePaddings]: isInsideContainer,
+            [css.cards]: !isDarkAppearance && !isInsideContainer,
           })}
         >
           <BlockBuilder

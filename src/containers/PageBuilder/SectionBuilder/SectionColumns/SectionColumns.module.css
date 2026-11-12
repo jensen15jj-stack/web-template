@@ -36,3 +36,44 @@
   padding-left: 0;
   padding-right: 0;
 }
+
+/* American Neighbor: each block in a columns section is shown as a card.
+   Not applied on sections with a dark custom appearance (white text). */
+.cards > * {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--anLine);
+  border-radius: var(--anRadiusCard);
+  background-color: var(--colorWhite);
+  box-shadow: var(--anShadowCard);
+}
+
+.cards {
+  gap: 20px;
+
+  @media (--viewportMedium) {
+    gap: 24px;
+  }
+}
+
+.twoColumns.cards {
+  @media (--viewportMedium) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.threeColumns.cards {
+  @media (--viewportMedium) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.fourColumns.cards {
+  @media (--viewportMedium) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (--viewportLarge) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

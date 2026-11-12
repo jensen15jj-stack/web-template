@@ -11,13 +11,12 @@
   margin-bottom: 0;
   line-height: 1.33;
   font-weight: bold;
-  color: var(--colorGrey900);
+  color: var(--anNavy);
 
-  /* fallback option */
-  word-break: break-all;
-  /* use break-word if available */
-  word-break: break-word;
-  hyphens: auto;
+  /* Break only very long words, and never hyphenate headings mid-word */
+  overflow-wrap: break-word;
+  hyphens: manual;
+  text-wrap: balance;
 }
 
 /* Specific styles */

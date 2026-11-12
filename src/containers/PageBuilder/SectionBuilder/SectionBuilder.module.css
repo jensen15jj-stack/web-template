@@ -130,24 +130,27 @@
 .description {
   composes: align;
   max-width: 65ch;
+  color: var(--anMuted);
 }
 
 .ctaButton {
   composes: align;
-  display: inline-block;
-  padding: 8px 20px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 0 24px;
   font-size: 15px;
-  background-color: var(--marketplaceColor);
-  border-radius: 4px;
+  background-color: var(--anNavy);
+  border-radius: var(--anRadiusPill);
   color: white;
   text-decoration: none;
-  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%);
-  font-weight: 500;
+  font-weight: var(--fontWeightBold);
   margin-top: 24px;
+  transition: background-color var(--transitionStyleButton);
 
   &:hover {
     text-decoration: none;
-    background-color: var(--marketplaceColorDark);
+    background-color: var(--anNavyLight);
   }
 }
 
@@ -206,11 +209,13 @@
 
 /* button on dark theme */
 .darkTheme .ctaButton {
-  border: 1px solid var(--marketplaceColorDark);
+  background-color: var(--anGold);
+  color: var(--anNavy);
   text-decoration: none;
 
   &:hover {
-    color: white;
+    background-color: var(--colorWhite);
+    color: var(--anNavy);
   }
 }
 

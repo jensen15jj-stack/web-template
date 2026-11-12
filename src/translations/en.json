@@ -1024,6 +1024,7 @@
   "SearchPage.searchError": "Search failed. Please try again.",
   "SearchResultsPanel.screenreader.pagination": "Pagination",
   "SeatsFilter.labelSelected": "Seats: {seatCount}",
+  "SectionFooter.disclaimer": "American Neighbor is a private business. It is not affiliated with, endorsed by, or sponsored by the Department of Defense, any military branch or installation, or the Department of Veterans Affairs.",
   "SectionHeroSplit.becomeProvider": "Become a provider",
   "SectionHeroSplit.check.background": "Background check",
   "SectionHeroSplit.check.family": "Military family",

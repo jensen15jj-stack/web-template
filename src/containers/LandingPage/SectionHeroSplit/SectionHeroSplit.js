@@ -100,7 +100,7 @@ const SectionHeroSplit = props => {
             >
               <FormattedMessage id="SectionHeroSplit.becomeProvider" />
             </NamedLink>
-            <NamedLink name="CMSPage" params={{ pageId: 'about' }} className={css.textLink}>
+            <NamedLink name="TrustPage" className={css.textLink}>
               <FormattedMessage id="SectionHeroSplit.howVerificationWorks" />
               <IconArrow />
             </NamedLink>

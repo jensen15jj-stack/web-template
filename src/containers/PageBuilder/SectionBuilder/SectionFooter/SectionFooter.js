@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import { pickFieldOptions } from '../../PageBuilder.helpers';
 
+import { FormattedMessage } from '../../../../util/reactIntl';
 import { LinkedLogo } from '../../../../components';
 
 import Field from '../../Field';
@@ -139,6 +140,9 @@ const SectionFooter = props => {
               </div>
             ) : null}
             <Field data={copyright} className={css.copyright} />
+            <p className={css.disclaimer}>
+              <FormattedMessage id="SectionFooter.disclaimer" />
+            </p>
           </div>
           <div className={classNames(css.grid, getGridCss(numberOfColumns))}>
             <BlockBuilder blocks={blocks} sectionId={sectionId} options={options} />

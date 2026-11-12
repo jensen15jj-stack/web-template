@@ -207,3 +207,13 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+/* American Neighbor: non-affiliation notice shown under the copyright line */
+.disclaimer {
+  max-width: 60ch;
+  margin: 12px 0 0 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--colorGrey600);
+}

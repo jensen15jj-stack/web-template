@@ -4,11 +4,14 @@
 const HERO_SOURCE_TYPES = ['hero', 'article'];
 
 // Console sections are recognised by the section name the operator gives them in Console.
+// `needsBlocks` sections render their Console content blocks, so they only use the custom
+// design when the section actually has blocks.
 const NAMED_SECTION_TYPES = [
-  [/browse services/i, 'serviceTiles'],
-  [/how it works/i, 'steps'],
-  [/verified/i, 'checks'],
-  [/community/i, 'communityRoles'],
+  { pattern: /browse services/i, type: 'serviceTiles', needsBlocks: true },
+  { pattern: /how it works/i, type: 'steps', needsBlocks: true },
+  { pattern: /verified/i, type: 'checks', needsBlocks: true },
+  { pattern: /community/i, type: 'communityRoles', needsBlocks: true },
+  { pattern: /mission/i, type: 'missionBand', needsBlocks: false },
 ];
 
 // Sections that are not edited in Console. Their copy is in src/translations/en.json.
@@ -21,37 +24,23 @@ const CODED_SECTIONS = [
 // The coded sections are placed before the closing call-to-action sections.
 const CLOSING_SECTION_NAME = /explore|two ways|call to action/i;
 
-const imageBlocks = section =>
-  (section?.blocks || []).filter(
-    block => block?.media?.fieldType === 'image' && block.media.image?.attributes?.variants
-  );
-
-/**
- * Pick photos for the hero collage: the first section that has at least three image blocks.
- *
- * @param {Array<Object>} sections landing page sections
- * @returns {Array<Object>} up to four { image, alt } objects
- */
-export const pickHeroImages = sections => {
-  const source = (sections || []).find(section => imageBlocks(section).length >= 3);
-  return source
-    ? imageBlocks(source)
-        .slice(0, 4)
-        .map(block => ({ image: block.media.image, alt: block.media.alt || '' }))
-    : [];
-};
-
 const customTypeFor = section => {
-  const match = NAMED_SECTION_TYPES.find(([pattern]) => pattern.test(section?.sectionName || ''));
-  // Only sections that have content blocks can use the block-based designs.
-  return match && section?.blocks?.length > 0 ? match[1] : section.sectionType;
+  const match = NAMED_SECTION_TYPES.find(m => m.pattern.test(section?.sectionName || ''));
+  if (!match) {
+    return section.sectionType;
+  }
+  if (match.needsBlocks && !(section?.blocks?.length > 0)) {
+    return section.sectionType;
+  }
+  return match.type;
 };
 
 /**
  * Apply the American Neighbor section designs to the landing page data.
  *
  * - The first section (Hero or Article template) uses the split hero.
- * - Sections named "Browse services", "How it works" and "...verified..." use custom designs.
+ * - Sections are matched to custom designs by their Console section name
+ *   (see NAMED_SECTION_TYPES).
  * - Reviews, service area and FAQ sections are added before the closing call-to-action sections.
  *
  * @param {Object} pageData landing page asset data ({ sections, meta })
@@ -67,7 +56,7 @@ export const withCustomSections = pageData => {
     return pageData;
   }
 
-  const hero = { ...first, sectionType: 'heroSplit', heroImages: pickHeroImages(rest) };
+  const hero = { ...first, sectionType: 'heroSplit' };
   const mapped = rest.map(section => ({ ...section, sectionType: customTypeFor(section) }));
 
   const closingIndex = mapped.findIndex(section =>

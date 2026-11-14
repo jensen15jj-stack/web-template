@@ -1,4 +1,4 @@
-import { parseBlockText, pickHeroImages, withCustomSections } from './landingSections';
+import { parseBlockText, withCustomSections } from './landingSections';
 
 const image = id => ({
   id,
@@ -55,12 +55,17 @@ describe('landingSections', () => {
       ]);
     });
 
-    it('turns the community section into icon cards so its photos are not repeated', () => {
-      const result = withCustomSections(page).sections;
-      const communitySection = result.find(s => s.sectionType === 'communityRoles');
+    it('turns the community section into icon cards (no repeated photos)', () => {
+      const communitySection = withCustomSections(page).sections.find(
+        s => s.sectionType === 'communityRoles'
+      );
       expect(communitySection).toBeTruthy();
-      // The same photos are used by the hero collage instead.
-      expect(result[0].heroImages.map(i => i.image.id)).toEqual(['p1', 'p2', 'p3', 'p4']);
+    });
+
+    it('turns a section named "...mission" into the mission band (even without blocks)', () => {
+      const mission = { sectionType: 'columns', sectionName: 'Our mission', blocks: [] };
+      const result = withCustomSections({ sections: [hero, mission] });
+      expect(result.sections[1].sectionType).toEqual('missionBand');
     });
 
     it('adds reviews, service area and FAQ before the closing section', () => {
@@ -83,26 +88,11 @@ describe('landingSections', () => {
       expect(result.sections[1].sectionType).toEqual('columns');
     });
 
-    it('gives the hero up to four photos from the first photo section', () => {
-      const heroSection = withCustomSections(page).sections[0];
-      expect(heroSection.heroImages.map(i => i.image.id)).toEqual(['p1', 'p2', 'p3', 'p4']);
-      expect(heroSection.heroImages[0].alt).toEqual('Photo p1');
-    });
-
     it('does not change the input or pages it should not touch', () => {
       expect(page.sections[0].sectionType).toEqual('article');
       const other = { sections: [services, hero] };
       expect(withCustomSections(other)).toBe(other);
       expect(withCustomSections(null)).toBe(null);
-    });
-  });
-
-  describe('pickHeroImages', () => {
-    it('returns nothing when no section has three photos', () => {
-      expect(pickHeroImages([{ blocks: [imageBlock('a'), imageBlock('b')] }, services])).toEqual(
-        []
-      );
-      expect(pickHeroImages(undefined)).toEqual([]);
     });
   });
 

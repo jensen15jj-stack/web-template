@@ -355,6 +355,81 @@
   }
 }
 
+/* Mission photo band */
+.missionBand {
+  position: relative;
+  width: 100%;
+  background-color: var(--anNavy);
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+}
+
+.missionOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 35, 65, 0.78) 0%, rgba(10, 35, 65, 0.86) 100%);
+}
+
+.missionContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.missionTitle {
+  margin: 0;
+  padding: 0;
+  max-width: 20ch;
+  font-family: var(--fontFamilyHeading);
+  font-size: 30px;
+  line-height: 1.15;
+  font-weight: var(--fontWeightHeavy);
+  letter-spacing: -0.01em;
+  color: var(--colorWhite);
+
+  @media (--viewportMedium) {
+    font-size: 40px;
+  }
+}
+
+.missionText {
+  margin: 16px 0 0 0;
+  padding: 0;
+  max-width: 60ch;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #e4e9f0;
+
+  @media (--viewportMedium) {
+    font-size: 18px;
+  }
+}
+
+.missionButton {
+  display: inline-flex;
+  align-items: center;
+  min-height: 52px;
+  margin-top: 28px;
+  padding: 0 28px;
+  border-radius: var(--anRadiusPill);
+  background-color: var(--anGold);
+  color: var(--anNavy);
+  font-family: var(--fontFamilyHeading);
+  font-size: 16px;
+  font-weight: var(--fontWeightBold);
+  text-decoration: none;
+  transition: background-color var(--transitionStyleButton);
+
+  &:hover {
+    text-decoration: none;
+    background-color: var(--colorWhite);
+    color: var(--anNavy);
+  }
+}
+
 /* Community roles (on navy) */
 .roleGrid {
   display: grid;

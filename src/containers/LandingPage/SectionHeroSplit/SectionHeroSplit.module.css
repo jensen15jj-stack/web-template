@@ -181,7 +181,7 @@
   box-shadow: var(--anShadowCard);
 
   @media (--viewportLarge) {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 5 / 4;
   }
 }
 
@@ -270,30 +270,6 @@
   font-size: 13px;
   line-height: 19px;
   color: var(--anMuted);
-}
-
-/* Photo collage: up to four photos in a 2 x 2 grid, with staggered columns */
-.collage {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-
-  @media (--viewportMedium) {
-    gap: 16px;
-  }
-}
-
-.collageItem {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: 20px;
-  background-color: var(--anNavySubtle);
-  box-shadow: var(--anShadowCard);
-
-  &:nth-child(odd) {
-    transform: translateY(16px);
-  }
 }
 
 /* Reassurance strip under the hero */

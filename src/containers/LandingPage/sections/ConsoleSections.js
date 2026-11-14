@@ -10,6 +10,7 @@ import { Link } from '../../PageBuilder/Primitives/Link';
 import { Icon, iconNameForTitle } from './icons';
 import { parseBlockText } from './landingSections';
 
+import communityPhoto from './images/community-neighbors.jpg';
 import css from './sections.module.css';
 
 const SectionHeader = props => {
@@ -177,6 +178,39 @@ export const SectionCommunityRoles = props => {
             );
           })}
         </ul>
+      </div>
+    </section>
+  );
+};
+
+/**
+ * A full-width photo band for the "Our mission" Console section.
+ * Shows the community photo behind a navy overlay, with the Console title,
+ * description and call-to-action button on top.
+ *
+ * @component
+ * @param {Object} props section data from Console (title, description, callToAction)
+ * @returns {JSX.Element} mission photo band
+ */
+export const SectionMissionBand = props => {
+  const { sectionId, title, description, callToAction } = props;
+  const ctaHref = callToAction?.href;
+  const ctaLabel = callToAction?.content;
+  return (
+    <section
+      id={sectionId}
+      className={css.missionBand}
+      style={{ backgroundImage: `url(${communityPhoto})` }}
+    >
+      <div className={css.missionOverlay} aria-hidden="true" />
+      <div className={classNames(css.inner, css.missionContent)}>
+        {title?.content ? <h2 className={css.missionTitle}>{title.content}</h2> : null}
+        {description?.content ? <p className={css.missionText}>{description.content}</p> : null}
+        {ctaHref ? (
+          <Link href={ctaHref} rootClassName={css.missionButton}>
+            {ctaLabel}
+          </Link>
+        ) : null}
       </div>
     </section>
   );

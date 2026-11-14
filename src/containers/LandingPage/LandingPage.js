@@ -15,6 +15,7 @@ import {
   SectionSteps,
   SectionChecks,
   SectionCommunityRoles,
+  SectionMissionBand,
 } from './sections/ConsoleSections';
 import { SectionReviewsInfo, SectionServiceArea, SectionFaq } from './sections/CodedSections';
 import { withCustomSections } from './sections/landingSections';
@@ -35,6 +36,7 @@ const SECTION_COMPONENTS = {
   steps: { component: SectionSteps },
   checks: { component: SectionChecks },
   communityRoles: { component: SectionCommunityRoles },
+  missionBand: { component: SectionMissionBand },
   reviewsInfo: { component: SectionReviewsInfo },
   serviceArea: { component: SectionServiceArea },
   faq: { component: SectionFaq },

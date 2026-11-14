@@ -403,9 +403,9 @@ export const SectionTwoWays = props => {
         <SectionHeader title={title} description={description} options={options} />
         <div className={css.twoWaysGrid}>
           {blocks.map((block, index) => {
-            const isProvider = /becomeaprovider|become|provider/i.test(
-              block.callToAction?.href || ''
-            );
+            // The provider path links to "/p/becomeaprovider"; the hirer path to
+            // "/p/findaprovider". Both contain "provider", so key on "become".
+            const isProvider = /become/i.test(block.callToAction?.href || '');
             const { text } = parseBlockText(block.text?.content);
             const cta = block.callToAction || {};
             return (

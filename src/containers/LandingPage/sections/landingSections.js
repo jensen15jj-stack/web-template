@@ -22,7 +22,11 @@ const CODED_SECTIONS = [
 ];
 
 // The coded sections are placed before the closing call-to-action sections.
-const CLOSING_SECTION_NAME = /explore|two ways|call to action/i;
+const CLOSING_SECTION_NAME = /explore|two ways/i;
+
+// Sections hidden on the landing page. The navy "Served? Put your skills to work."
+// band is dropped because the "Two ways" section already offers the provider path.
+const HIDDEN_SECTION_NAME = /provider call to action band/i;
 
 const customTypeFor = section => {
   const match = NAMED_SECTION_TYPES.find(m => m.pattern.test(section?.sectionName || ''));
@@ -57,7 +61,8 @@ export const withCustomSections = pageData => {
   }
 
   const hero = { ...first, sectionType: 'heroSplit' };
-  const mapped = rest.map(section => ({ ...section, sectionType: customTypeFor(section) }));
+  const visible = rest.filter(section => !HIDDEN_SECTION_NAME.test(section?.sectionName || ''));
+  const mapped = visible.map(section => ({ ...section, sectionType: customTypeFor(section) }));
 
   const closingIndex = mapped.findIndex(section =>
     CLOSING_SECTION_NAME.test(section?.sectionName || '')

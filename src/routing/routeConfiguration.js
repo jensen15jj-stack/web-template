@@ -37,6 +37,10 @@ const SearchPageWithMap = loadable(() => import(/* webpackChunkName: "SearchPage
 const SearchPageWithGrid = loadable(() => import(/* webpackChunkName: "SearchPageWithGrid" */ /* webpackPrefetch: true */  '../containers/SearchPage/SearchPageWithGrid'));
 const StripePayoutPage = loadable(() => import(/* webpackChunkName: "StripePayoutPage" */ '../containers/StripePayoutPage/StripePayoutPage'));
 const TrustPage = loadable(() => import(/* webpackChunkName: "TrustPage" */ '../containers/TrustPage/TrustPage'));
+const AboutPage = loadable(() => import(/* webpackChunkName: "AboutPage" */ '../containers/AboutPage/AboutPage'));
+const ContactPage = loadable(() => import(/* webpackChunkName: "ContactPage" */ '../containers/ContactPage/ContactPage'));
+const FindProviderPage = loadable(() => import(/* webpackChunkName: "FindProviderPage" */ '../containers/FindProviderPage/FindProviderPage'));
+const BecomeProviderPage = loadable(() => import(/* webpackChunkName: "BecomeProviderPage" */ '../containers/BecomeProviderPage/BecomeProviderPage'));
 const TermsOfServicePage = loadable(() => import(/* webpackChunkName: "TermsOfServicePage" */ '../containers/TermsOfServicePage/TermsOfServicePage'));
 const TransactionPage = loadable(() => import(/* webpackChunkName: "TransactionPage" */ '../containers/TransactionPage/TransactionPage'));
 const NoAccessPage = loadable(() => import(/* webpackChunkName: "NoAccessPage" */ '../containers/NoAccessPage/NoAccessPage'));
@@ -87,6 +91,28 @@ const routeConfiguration = (layoutConfig, accessControlConfig) => {
       path: '/trust-and-safety',
       name: 'TrustPage',
       component: TrustPage,
+    },
+    // American Neighbor: these content pages are built in code (design + functionality).
+    // They must be listed before the generic '/p/:pageId' CMS route so they win the match.
+    {
+      path: '/p/findaprovider',
+      name: 'FindProviderPage',
+      component: FindProviderPage,
+    },
+    {
+      path: '/p/becomeaprovider',
+      name: 'BecomeProviderPage',
+      component: BecomeProviderPage,
+    },
+    {
+      path: '/p/about',
+      name: 'AboutPage',
+      component: AboutPage,
+    },
+    {
+      path: '/p/contact',
+      name: 'ContactPage',
+      component: ContactPage,
     },
     {
       path: '/p/:pageId',

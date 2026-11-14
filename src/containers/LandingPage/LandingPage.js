@@ -9,15 +9,7 @@ import { camelize } from '../../util/string';
 import { propTypes } from '../../util/types';
 
 import FallbackPage from './FallbackPage';
-import SectionHeroSplit from './SectionHeroSplit';
-import {
-  SectionServiceTiles,
-  SectionSteps,
-  SectionChecks,
-  SectionCommunityRoles,
-  SectionMissionBand,
-} from './sections/ConsoleSections';
-import { SectionReviewsInfo, SectionServiceArea, SectionFaq } from './sections/CodedSections';
+import { CUSTOM_SECTION_COMPONENTS } from './sections/customSections';
 import { withCustomSections } from './sections/landingSections';
 import { ASSET_NAME } from './LandingPage.duck';
 import { fetchFeaturedListings } from '../../ducks/featuredListings.duck';
@@ -28,19 +20,9 @@ const PageBuilder = loadable(() =>
   import(/* webpackChunkName: "PageBuilder" */ '../PageBuilder/PageBuilder')
 );
 
-// American Neighbor: custom section components for the landing page.
-// Which section gets which design is decided in ./sections/landingSections.js
-const SECTION_COMPONENTS = {
-  heroSplit: { component: SectionHeroSplit },
-  serviceTiles: { component: SectionServiceTiles },
-  steps: { component: SectionSteps },
-  checks: { component: SectionChecks },
-  communityRoles: { component: SectionCommunityRoles },
-  missionBand: { component: SectionMissionBand },
-  reviewsInfo: { component: SectionReviewsInfo },
-  serviceArea: { component: SectionServiceArea },
-  faq: { component: SectionFaq },
-};
+// The section-name → design mapping is decided in ./sections/landingSections.js;
+// the component map is shared with the sub-pages in ./sections/customSections.js.
+const SECTION_COMPONENTS = CUSTOM_SECTION_COMPONENTS;
 
 export { withCustomSections };
 

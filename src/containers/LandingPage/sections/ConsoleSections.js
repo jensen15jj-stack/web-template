@@ -14,13 +14,13 @@ import communityPhoto from './images/community-neighbors.jpg';
 import css from './sections.module.css';
 
 const SectionHeader = props => {
-  const { eyebrowId, title, description, options, onNavy } = props;
+  const { eyebrowId, eyebrowText, title, description, options, onNavy } = props;
   const fieldOptions = pickFieldOptions(options);
   return (
     <header className={css.header}>
-      {eyebrowId ? (
+      {eyebrowId || eyebrowText ? (
         <p className={classNames(css.eyebrow, { [css.eyebrowOnNavy]: onNavy })}>
-          <FormattedMessage id={eyebrowId} />
+          {eyebrowId ? <FormattedMessage id={eyebrowId} /> : eyebrowText}
         </p>
       ) : null}
       <Field
@@ -127,6 +127,78 @@ export const SectionSteps = props => {
             );
           })}
         </ol>
+      </div>
+    </section>
+  );
+};
+
+/**
+ * A page header for the sub-pages (About, Find a provider, Become a provider, Contact).
+ * Content comes from the page's data in code.
+ *
+ * @component
+ * @param {Object} props
+ * @param {string} props.sectionId id of the section
+ * @param {string?} props.eyebrowText small label above the title
+ * @param {string} props.titleText the page heading (rendered as h1)
+ * @param {string?} props.descriptionText supporting paragraph
+ * @param {string?} props.ctaHref primary button link
+ * @param {string?} props.ctaLabel primary button label
+ * @param {string?} props.secondaryHref secondary button link
+ * @param {string?} props.secondaryLabel secondary button label
+ * @param {'tinted'|'navy'} props.tone background tone
+ * @returns {JSX.Element} page header section
+ */
+export const SectionPageHero = props => {
+  const {
+    sectionId,
+    eyebrowText,
+    titleText,
+    descriptionText,
+    ctaHref,
+    ctaLabel,
+    secondaryHref,
+    secondaryLabel,
+    tone,
+    headingLevel,
+  } = props;
+  const onNavy = tone === 'navy';
+  // The page's main header is an h1; closing call-to-action bands are h2.
+  const Heading = headingLevel === 2 ? 'h2' : 'h1';
+  return (
+    <section
+      id={sectionId}
+      className={classNames(css.section, onNavy ? css.sectionNavy : css.sectionTinted)}
+    >
+      <div className={classNames(css.inner, css.pageHeroInner)}>
+        {eyebrowText ? (
+          <p className={classNames(css.eyebrow, { [css.eyebrowOnNavy]: onNavy })}>{eyebrowText}</p>
+        ) : null}
+        <Heading className={classNames(css.pageHeroTitle, { [css.onNavy]: onNavy })}>
+          {titleText}
+        </Heading>
+        {descriptionText ? (
+          <p className={classNames(css.pageHeroText, { [css.onNavyMuted]: onNavy })}>
+            {descriptionText}
+          </p>
+        ) : null}
+        {ctaHref || secondaryHref ? (
+          <div className={css.pageHeroActions}>
+            {ctaHref ? (
+              <Link href={ctaHref} rootClassName={onNavy ? css.missionButton : css.ctaSolid}>
+                {ctaLabel}
+              </Link>
+            ) : null}
+            {secondaryHref ? (
+              <Link
+                href={secondaryHref}
+                rootClassName={onNavy ? css.ctaOnNavyOutline : css.outlineButton}
+              >
+                {secondaryLabel}
+              </Link>
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </section>
   );
@@ -261,6 +333,54 @@ export const SectionChecks = props => {
             <FormattedMessage id="LandingSections.checksLink" />
           </Link>
         </div>
+      </div>
+    </section>
+  );
+};
+
+/**
+ * A generic grid of icon cards for the sub-pages (value props, "why join", etc.).
+ * Each block becomes an icon + title + text card. No trailing link.
+ *
+ * @component
+ * @param {Object} props section data (title, description, blocks, tone)
+ * @param {'tinted'|'white'|'navy'} props.tone background and card tone
+ * @returns {JSX.Element} section with icon cards
+ */
+export const SectionIconCards = props => {
+  const { sectionId, eyebrowText, title, description, blocks = [], tone, options } = props;
+  const onNavy = tone === 'navy';
+  const sectionTone = onNavy ? css.sectionNavy : tone === 'white' ? null : css.sectionTinted;
+  const gridClass = onNavy ? css.roleGrid : css.checkGrid;
+  const cardClass = onNavy ? css.role : css.check;
+  const iconClass = onNavy ? css.roleIcon : css.checkIcon;
+  const titleClass = onNavy ? css.roleTitle : css.checkTitle;
+  const textClass = onNavy ? css.roleText : css.checkText;
+  return (
+    <section id={sectionId} className={classNames(css.section, sectionTone)}>
+      <div className={css.inner}>
+        <SectionHeader
+          eyebrowText={eyebrowText}
+          title={title}
+          description={description}
+          options={options}
+          onNavy={onNavy}
+        />
+        <ul className={gridClass}>
+          {blocks.map(block => {
+            const cardTitle = block.title?.content || '';
+            const { text } = parseBlockText(block.text?.content);
+            return (
+              <li key={block.blockId || cardTitle} className={cardClass}>
+                <span className={iconClass}>
+                  <Icon name={block.icon || iconNameForTitle(cardTitle, 'shield')} size={24} />
+                </span>
+                <h3 className={titleClass}>{cardTitle}</h3>
+                {text ? <p className={textClass}>{text}</p> : null}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

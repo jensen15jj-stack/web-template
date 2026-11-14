@@ -13,17 +13,25 @@ import { parseBlockText } from './landingSections';
 import css from './sections.module.css';
 
 const SectionHeader = props => {
-  const { eyebrowId, title, description, options } = props;
+  const { eyebrowId, title, description, options, onNavy } = props;
   const fieldOptions = pickFieldOptions(options);
   return (
     <header className={css.header}>
       {eyebrowId ? (
-        <p className={css.eyebrow}>
+        <p className={classNames(css.eyebrow, { [css.eyebrowOnNavy]: onNavy })}>
           <FormattedMessage id={eyebrowId} />
         </p>
       ) : null}
-      <Field data={title} className={css.title} options={fieldOptions} />
-      <Field data={description} className={css.description} options={fieldOptions} />
+      <Field
+        data={title}
+        className={classNames(css.title, { [css.onNavy]: onNavy })}
+        options={fieldOptions}
+      />
+      <Field
+        data={description}
+        className={classNames(css.description, { [css.onNavyMuted]: onNavy })}
+        options={fieldOptions}
+      />
     </header>
   );
 };
@@ -118,6 +126,57 @@ export const SectionSteps = props => {
             );
           })}
         </ol>
+      </div>
+    </section>
+  );
+};
+
+// Pick an icon for a community role from its title.
+const iconForRole = (title = '') => {
+  if (/active/i.test(title)) return 'shield';
+  if (/veteran/i.test(title)) return 'medal';
+  if (/retire/i.test(title)) return 'star';
+  if (/local|community|neighbor/i.test(title)) return 'home';
+  return 'shield';
+};
+
+/**
+ * "Our Community": each Console block becomes an icon card.
+ *
+ * The block photos are intentionally not shown here: they are used in the hero
+ * collage instead, so the same photos never appear twice on the page.
+ *
+ * @component
+ * @param {Object} props section data from Console (title, description, blocks)
+ * @returns {JSX.Element} section with community role cards
+ */
+export const SectionCommunityRoles = props => {
+  const { sectionId, title, description, blocks = [], options } = props;
+  return (
+    <section id={sectionId} className={classNames(css.section, css.sectionNavy)}>
+      <div className={css.inner}>
+        <SectionHeader
+          eyebrowId="LandingSections.communityEyebrow"
+          title={title}
+          description={description}
+          options={options}
+          onNavy
+        />
+        <ul className={css.roleGrid}>
+          {blocks.map(block => {
+            const roleTitle = block.title?.content || '';
+            const { text } = parseBlockText(block.text?.content);
+            return (
+              <li key={block.blockId || roleTitle} className={css.role}>
+                <span className={css.roleIcon}>
+                  <Icon name={iconForRole(roleTitle)} size={26} />
+                </span>
+                <h3 className={css.roleTitle}>{roleTitle}</h3>
+                {text ? <p className={css.roleText}>{text}</p> : null}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

@@ -8,6 +8,7 @@ const NAMED_SECTION_TYPES = [
   [/browse services/i, 'serviceTiles'],
   [/how it works/i, 'steps'],
   [/verified/i, 'checks'],
+  [/community/i, 'communityRoles'],
 ];
 
 // Sections that are not edited in Console. Their copy is in src/translations/en.json.

@@ -10,7 +10,12 @@ import { propTypes } from '../../util/types';
 
 import FallbackPage from './FallbackPage';
 import SectionHeroSplit from './SectionHeroSplit';
-import { SectionServiceTiles, SectionSteps, SectionChecks } from './sections/ConsoleSections';
+import {
+  SectionServiceTiles,
+  SectionSteps,
+  SectionChecks,
+  SectionCommunityRoles,
+} from './sections/ConsoleSections';
 import { SectionReviewsInfo, SectionServiceArea, SectionFaq } from './sections/CodedSections';
 import { withCustomSections } from './sections/landingSections';
 import { ASSET_NAME } from './LandingPage.duck';
@@ -29,6 +34,7 @@ const SECTION_COMPONENTS = {
   serviceTiles: { component: SectionServiceTiles },
   steps: { component: SectionSteps },
   checks: { component: SectionChecks },
+  communityRoles: { component: SectionCommunityRoles },
   reviewsInfo: { component: SectionReviewsInfo },
   serviceArea: { component: SectionServiceArea },
   faq: { component: SectionFaq },

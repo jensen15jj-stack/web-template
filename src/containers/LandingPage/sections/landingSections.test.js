@@ -51,8 +51,16 @@ describe('landingSections', () => {
         'serviceTiles',
         'steps',
         'checks',
-        'columns',
+        'communityRoles',
       ]);
+    });
+
+    it('turns the community section into icon cards so its photos are not repeated', () => {
+      const result = withCustomSections(page).sections;
+      const communitySection = result.find(s => s.sectionType === 'communityRoles');
+      expect(communitySection).toBeTruthy();
+      // The same photos are used by the hero collage instead.
+      expect(result[0].heroImages.map(i => i.image.id)).toEqual(['p1', 'p2', 'p3', 'p4']);
     });
 
     it('adds reviews, service area and FAQ before the closing section', () => {

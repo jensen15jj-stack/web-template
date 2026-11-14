@@ -355,6 +355,62 @@
   }
 }
 
+/* Community roles (on navy) */
+.roleGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @media (--viewportMedium) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  @media (--viewportLarge) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.role {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--anRadiusCard);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.roleIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background-color: rgba(200, 161, 75, 0.16);
+  color: var(--anGold);
+}
+
+.roleTitle {
+  margin: 0;
+  padding: 0;
+  font-size: 19px;
+  line-height: 1.25;
+  font-weight: var(--fontWeightBold);
+  color: var(--colorWhite);
+}
+
+.roleText {
+  margin: 8px 0 0 0;
+  padding: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #d5dbe4;
+}
+
 /* Reviews */
 .stars {
   display: inline-flex;

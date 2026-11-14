@@ -385,3 +385,55 @@ export const SectionIconCards = props => {
     </section>
   );
 };
+
+/**
+ * "Two ways to be an American Neighbor": the dual-path closing section.
+ * Renders the two Console blocks (hirer and provider) as two distinct cards,
+ * each with a large, clearly-labelled full-width button.
+ *
+ * @component
+ * @param {Object} props section data (title, blocks with callToAction, options)
+ * @returns {JSX.Element} two-path section
+ */
+export const SectionTwoWays = props => {
+  const { sectionId, title, description, blocks = [], options } = props;
+  return (
+    <section id={sectionId} className={classNames(css.section, css.sectionTinted)}>
+      <div className={css.inner}>
+        <SectionHeader title={title} description={description} options={options} />
+        <div className={css.twoWaysGrid}>
+          {blocks.map((block, index) => {
+            const isProvider = /becomeaprovider|become|provider/i.test(
+              block.callToAction?.href || ''
+            );
+            const { text } = parseBlockText(block.text?.content);
+            const cta = block.callToAction || {};
+            return (
+              <div
+                key={block.blockId || index}
+                className={classNames(css.twoWaysCard, {
+                  [css.twoWaysCardProvider]: isProvider,
+                })}
+              >
+                <span className={css.twoWaysIcon}>
+                  <Icon name={isProvider ? 'briefcase' : 'home'} size={28} />
+                </span>
+                <p className={css.twoWaysEyebrow}>
+                  {isProvider ? 'Have skills to offer?' : 'Need a hand?'}
+                </p>
+                <h3 className={css.twoWaysCardTitle}>{block.title?.content}</h3>
+                {text ? <p className={css.twoWaysCardText}>{text}</p> : null}
+                {cta.href ? (
+                  <Link href={cta.href} rootClassName={css.twoWaysButton}>
+                    {cta.content}
+                    <Icon name="arrow" size={18} />
+                  </Link>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};

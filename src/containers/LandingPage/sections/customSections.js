@@ -10,6 +10,7 @@ import {
   SectionMissionBand,
   SectionPageHero,
   SectionIconCards,
+  SectionTwoWays,
 } from './ConsoleSections';
 import { SectionReviewsInfo, SectionServiceArea, SectionFaq } from './CodedSections';
 import SectionContactForm from './SectionContactForm';
@@ -23,6 +24,7 @@ export const CUSTOM_SECTION_COMPONENTS = {
   communityRoles: { component: SectionCommunityRoles },
   missionBand: { component: SectionMissionBand },
   iconCards: { component: SectionIconCards },
+  twoWays: { component: SectionTwoWays },
   reviewsInfo: { component: SectionReviewsInfo },
   serviceArea: { component: SectionServiceArea },
   faq: { component: SectionFaq },

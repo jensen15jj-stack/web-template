@@ -69,7 +69,13 @@ describe('landingSections', () => {
     });
 
     it('adds reviews, service area and FAQ before the closing section', () => {
-      expect(types.slice(5)).toEqual(['reviewsInfo', 'serviceArea', 'faq', 'columns']);
+      expect(types.slice(5)).toEqual(['reviewsInfo', 'serviceArea', 'faq', 'twoWays']);
+    });
+
+    it('turns the closing "Explore / two ways" section into the two-ways design', () => {
+      const twoWays = withCustomSections(page).sections.find(s => s.sectionType === 'twoWays');
+      expect(twoWays).toBeTruthy();
+      expect(twoWays.sectionName).toEqual('Explore the American Neighbor Difference');
     });
 
     it('appends the coded sections when there is no closing section', () => {

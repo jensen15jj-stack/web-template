@@ -12,6 +12,7 @@ const NAMED_SECTION_TYPES = [
   { pattern: /verified/i, type: 'checks', needsBlocks: true },
   { pattern: /community/i, type: 'communityRoles', needsBlocks: true },
   { pattern: /mission/i, type: 'missionBand', needsBlocks: false },
+  { pattern: /explore|two ways/i, type: 'twoWays', needsBlocks: true },
 ];
 
 // Sections that are not edited in Console. Their copy is in src/translations/en.json.

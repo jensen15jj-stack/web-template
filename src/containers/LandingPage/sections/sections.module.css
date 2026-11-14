@@ -853,3 +853,129 @@
 .pageHeroText.onNavyMuted {
   color: #d5dbe4;
 }
+
+/* ===== Two ways to be an American Neighbor ===== */
+.twoWaysGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  align-items: stretch;
+
+  @media (--viewportMedium) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+.twoWaysCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  padding: 32px 28px 28px;
+  border: 1px solid var(--anLine);
+  border-radius: var(--anRadiusCard);
+  background-color: var(--colorWhite);
+  box-shadow: var(--anShadowCard);
+
+  @media (--viewportMedium) {
+    padding: 40px 36px 36px;
+  }
+}
+
+.twoWaysCardProvider {
+  border-color: var(--anNavy);
+  background-color: var(--anNavy);
+}
+
+.twoWaysIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  background-color: var(--anNavy);
+  color: var(--anGold);
+}
+
+.twoWaysCardProvider .twoWaysIcon {
+  background-color: var(--anGold);
+  color: var(--anNavy);
+}
+
+.twoWaysEyebrow {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: var(--fontWeightBold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--anGold);
+}
+
+.twoWaysCardTitle {
+  margin: 0;
+  font-family: var(--fontFamilyHeading);
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: var(--fontWeightBold);
+  color: var(--anNavy);
+
+  @media (--viewportMedium) {
+    font-size: 27px;
+  }
+}
+
+.twoWaysCardProvider .twoWaysCardTitle {
+  color: var(--colorWhite);
+}
+
+.twoWaysCardText {
+  margin: 12px 0 28px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--anMuted);
+}
+
+.twoWaysCardProvider .twoWaysCardText {
+  color: #d5dbe4;
+}
+
+.twoWaysButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 58px;
+  margin-top: auto;
+  padding: 0 24px;
+  border-radius: var(--anRadiusPill);
+  background-color: var(--anGold);
+  color: var(--anNavy);
+  font-family: var(--fontFamilyHeading);
+  font-size: 17px;
+  font-weight: var(--fontWeightBold);
+  text-decoration: none;
+  transition: background-color var(--transitionStyleButton), transform var(--transitionStyleButton);
+
+  &:hover {
+    text-decoration: none;
+    background-color: #d9b662;
+    color: var(--anNavy);
+    transform: translateY(-1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: background-color var(--transitionStyleButton);
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+.twoWaysButton svg {
+  flex-shrink: 0;
+}

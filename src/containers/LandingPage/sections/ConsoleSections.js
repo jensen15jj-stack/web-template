@@ -185,17 +185,21 @@ export const SectionCommunityRoles = props => {
 
 /**
  * A full-width photo band for the "Our mission" Console section.
- * Shows the community photo behind a navy overlay, with the Console title,
- * description and call-to-action button on top.
+ * Shows the community photo behind a navy overlay, with the copy and
+ * call-to-action on top.
+ *
+ * This is a hirer-facing band, so the copy and the button come from
+ * translations (editable in Console → Content → Marketplace texts under
+ * LandingSections.mission*) and the button always points to Find a provider.
+ * The matching Console section only triggers this band; its own text is not used.
  *
  * @component
- * @param {Object} props section data from Console (title, description, callToAction)
+ * @param {Object} props
+ * @param {string} props.sectionId id of the section
  * @returns {JSX.Element} mission photo band
  */
 export const SectionMissionBand = props => {
-  const { sectionId, title, description, callToAction } = props;
-  const ctaHref = callToAction?.href;
-  const ctaLabel = callToAction?.content;
+  const { sectionId } = props;
   return (
     <section
       id={sectionId}
@@ -204,13 +208,15 @@ export const SectionMissionBand = props => {
     >
       <div className={css.missionOverlay} aria-hidden="true" />
       <div className={classNames(css.inner, css.missionContent)}>
-        {title?.content ? <h2 className={css.missionTitle}>{title.content}</h2> : null}
-        {description?.content ? <p className={css.missionText}>{description.content}</p> : null}
-        {ctaHref ? (
-          <Link href={ctaHref} rootClassName={css.missionButton}>
-            {ctaLabel}
-          </Link>
-        ) : null}
+        <h2 className={css.missionTitle}>
+          <FormattedMessage id="LandingSections.missionTitle" />
+        </h2>
+        <p className={css.missionText}>
+          <FormattedMessage id="LandingSections.missionText" />
+        </p>
+        <Link href="/p/findaprovider" rootClassName={css.missionButton}>
+          <FormattedMessage id="LandingSections.missionCta" />
+        </Link>
       </div>
     </section>
   );

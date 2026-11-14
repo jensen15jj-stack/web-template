@@ -67,6 +67,37 @@ describe('LandingPage custom sections', () => {
   });
 });
 
+describe('LandingPage mission band', () => {
+  it('renders a hirer-facing band whose button goes to Find a provider', async () => {
+    const mission = {
+      sectionType: 'columns',
+      sectionName: 'Our mission',
+      sectionId: 'mission',
+      // Console content is intentionally ignored by the mission band; the button
+      // must point to Find a provider, not Become a provider.
+      callToAction: {
+        fieldType: 'internalButtonLink',
+        content: 'Offer your services',
+        href: '/p/becomeaprovider',
+      },
+      blocks: [],
+    };
+
+    const { getByRole } = render(
+      <LandingPageComponent
+        pageAssetsData={{ landingPage: { data: { sections: [heroSection, mission] } } }}
+        inProgress={false}
+        error={null}
+      />
+    );
+
+    await waitFor(() => {
+      const cta = getByRole('link', { name: 'LandingSections.missionCta' });
+      expect(cta).toHaveAttribute('href', '/p/findaprovider');
+    });
+  });
+});
+
 describe('LandingPage block-based custom sections', () => {
   it('renders service tiles as links, numbered steps and checks', async () => {
     const block = (id, title, text) => ({

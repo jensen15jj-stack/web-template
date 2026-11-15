@@ -104,7 +104,10 @@ const defaultConfig = {
     analytics: '/integrations/analytics.json',
     googleSearchConsole: '/integrations/google-search-console.json',
     maps: '/integrations/map.json',
-    // NOTE: we don't fetch commission configuration here but on the server-side
+    // American Neighbor: the commission asset is also fetched on the client so listing cards
+    // and the order panel can show the all-in price (provider's rate + customer service fee).
+    // The server still computes the authoritative line items for checkout.
+    commission: '/transactions/commission.json',
   },
 
   // Optional

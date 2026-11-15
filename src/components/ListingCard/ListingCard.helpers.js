@@ -1,7 +1,12 @@
 import { displayPrice, isPriceVariationsEnabled } from '../../util/configHelpers';
 import { formatMoney } from '../../util/currency';
 import { richText } from '../../util/richText';
-import { isBookingProcessAlias } from '../../transactions/transaction';
+import { getAllInPrice, hasCustomerFee } from '../../util/allInPrice';
+import { getServiceLine } from '../../util/serviceMember';
+import {
+  isBookingProcessAlias,
+  NEGOTIATION_PROCESS_NAME,
+} from '../../transactions/transaction';
 
 import css from './ListingCard.module.css';
 
@@ -26,56 +31,86 @@ const priceData = (price, currency, intl) => {
   return {};
 };
 
+const isNegotiationProcessAlias = processAlias =>
+  typeof processAlias === 'string' && processAlias.split('/')[0] === NEGOTIATION_PROCESS_NAME;
+
+// "Jensen J." style short name; falls back to the display name.
+const getAuthorNames = author => {
+  const profile = author?.attributes?.profile || {};
+  const displayName = profile.displayName || '';
+  const initials =
+    profile.abbreviatedName ||
+    displayName
+      .split(' ')
+      .filter(Boolean)
+      .map(part => part[0])
+      .join('')
+      .slice(0, 2)
+      .toUpperCase();
+  return { displayName, initials };
+};
+
 /**
  * Returns all translated and formatted strings for ListingCard so the
  * presentational component can stay simple and aria-labels use the same copy.
  *
+ * American Neighbor changes:
+ * - Prices are shown all-in (provider's rate + customer service fee), so the
+ *   number on the card is what the hirer pays. Checkout itemizes the fee.
+ * - Unit labels: "/ hr" for hourly, "flat" for fixed-length services.
+ * - Request-for-quote listings show "Request a quote" instead of a price.
+ * - serviceLine: "<Branch> <Status>" from the provider's profile (no ranks or bases).
+ *
  * @param {Object} listing - API entity: listing or ownListing
  * @param {Object} config - app configuration (e.g. from useConfiguration())
  * @param {Object} intl - React Intl instance (e.g. from useIntl())
- * @returns {Object} translations and derived values:
- *   - titlePlain: raw title string (for aria/alt)
- *   - titleFormatted: React nodes from richText(title) for display
- *   - showPrice: whether to show the price block
- *   - priceTooltip: string for the price element's title attribute (tooltip on hover)
- *   - priceMessage: React nodes for the price block content (styled amount + per-unit)
- *   - cardAriaLabel: ready-to-use aria-label for the card link (listing title + plain price line when shown)
- *   - authorName: "ListingCard.author" string containing author's display name
+ * @returns {Object} translations and derived values
  */
 export const getListingCardTranslations = (listing, config, intl) => {
   const { title = '', price, publicData } = listing?.attributes || {};
+  const author = listing?.author;
 
-  const authorDisplayName = listing?.author?.attributes?.profile?.displayName;
+  const { displayName: authorDisplayName, initials: authorInitials } = getAuthorNames(author);
   const authorName = intl.formatMessage(
     { id: 'ListingCard.author' },
     { authorName: authorDisplayName }
   );
+  const serviceLine = getServiceLine(author, config);
 
   const validListingTypes = config.listing.listingTypes || [];
-  const { listingType } = publicData || {};
+  const { listingType, transactionProcessAlias, unitType } = publicData || {};
   const listingTypeConfig = validListingTypes.find(conf => conf.listingType === listingType);
 
-  const showPrice = displayPrice(listingTypeConfig);
-  const { formattedPrice, priceTooltip } = priceData(price, config.currency, intl);
+  const isQuote = isNegotiationProcessAlias(transactionProcessAlias);
+  const showPrice = !isQuote && displayPrice(listingTypeConfig) && !!price;
+
+  const allInPrice = showPrice ? getAllInPrice(price, config.commission) : null;
+  const { formattedPrice, priceTooltip: rawTooltip } = priceData(allInPrice, config.currency, intl);
+  const includesFee = showPrice && hasCustomerFee(config.commission);
+  const priceTooltip = includesFee
+    ? intl.formatMessage({ id: 'ListingCard.allInTooltip' }, { formattedPrice })
+    : rawTooltip;
 
   const isPriceVariationsInUse = isPriceVariationsEnabled(publicData, listingTypeConfig);
   const hasMultiplePriceVariants = isPriceVariationsInUse && publicData?.priceVariants?.length > 1;
-  const isBookable = isBookingProcessAlias(publicData?.transactionProcessAlias);
+  const isBookable = isBookingProcessAlias(transactionProcessAlias);
 
   const priceMessageId = hasMultiplePriceVariants
     ? 'ListingCard.priceStartingFrom'
     : 'ListingCard.price';
 
   const perUnitString = isBookable
-    ? intl.formatMessage({ id: 'ListingCard.perUnit' }, { unitType: publicData?.unitType })
+    ? intl.formatMessage({ id: 'ListingCard.anPerUnit' }, { unitType })
     : '';
 
   // Visible price block uses JSX spans for styling; aria-label needs a plain string.
   const priceValue = <span className={css.priceValue}>{formattedPrice}</span>;
-  const pricePerUnit = isBookable ? <span className={css.perUnit}>{perUnitString}</span> : '';
+  const pricePerUnit = perUnitString ? <span className={css.perUnit}>{perUnitString}</span> : '';
   const priceMessage =
     showPrice && formattedPrice != null
       ? intl.formatMessage({ id: priceMessageId }, { priceValue, pricePerUnit })
+      : isQuote
+      ? intl.formatMessage({ id: 'ListingCard.requestQuote' })
       : '';
 
   const priceMessagePlain =
@@ -84,6 +119,8 @@ export const getListingCardTranslations = (listing, config, intl) => {
           { id: priceMessageId },
           { priceValue: formattedPrice, pricePerUnit: perUnitString }
         )
+      : isQuote
+      ? intl.formatMessage({ id: 'ListingCard.requestQuote' })
       : '';
 
   const cardAriaLabel =
@@ -101,7 +138,10 @@ export const getListingCardTranslations = (listing, config, intl) => {
       longWordClass: css.longWord,
     }),
     authorName,
-    showPrice,
+    authorInitials,
+    serviceLine,
+    showPrice: showPrice || isQuote,
+    isQuote,
     priceTooltip,
     priceMessage,
     cardAriaLabel,

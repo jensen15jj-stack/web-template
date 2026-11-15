@@ -1766,6 +1766,22 @@ const hasMandatoryConfigs = hostedConfig => {
   );
 };
 
+// American Neighbor: keep only valid, non-negative numbers from a commission object
+// ({ percentage, minimum_amount }). Anything else is dropped.
+const validCommissionPart = part => {
+  const isValidNumber = n => typeof n === 'number' && !isNaN(n) && n >= 0;
+  const percentageMaybe = isValidNumber(part?.percentage) ? { percentage: part.percentage } : {};
+  const minimumMaybe = isValidNumber(part?.minimum_amount)
+    ? { minimum_amount: part.minimum_amount }
+    : {};
+  return { ...percentageMaybe, ...minimumMaybe };
+};
+
+const validCommission = commission => ({
+  providerCommission: validCommissionPart(commission?.providerCommission),
+  customerCommission: validCommissionPart(commission?.customerCommission),
+});
+
 export const mergeConfig = (configAsset = {}, defaultConfigs = {}) => {
   // Remove trailing slash from marketplaceRootURL if any
   const marketplaceRootURL = defaultConfigs.marketplaceRootURL;
@@ -1860,6 +1876,10 @@ export const mergeConfig = (configAsset = {}, defaultConfigs = {}) => {
     // Include hosted footer config, if it exists
     // Note: if footer asset is not set, Footer is not rendered.
     footer: configAsset.footer,
+
+    // American Neighbor: commission settings from Console (Monetization > Commission).
+    // Used only to display all-in prices; checkout line items are calculated on the server.
+    commission: validCommission(configAsset.commission),
 
     // Check if all the mandatory info have been retrieved from hosted assets
     hasMandatoryConfigurations: hasMandatoryConfigs(configAsset),

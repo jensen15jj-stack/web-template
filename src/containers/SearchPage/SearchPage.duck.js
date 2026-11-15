@@ -450,7 +450,8 @@ export const loadData = (params, search, config) => (dispatch, getState, sdk) =>
         'publicData.priceVariationsEnabled',
         'publicData.priceVariants',
       ],
-      'fields.user': ['profile.displayName', 'profile.abbreviatedName'],
+      // American Neighbor: publicData carries the provider's branch and service status for the card
+      'fields.user': ['profile.displayName', 'profile.abbreviatedName', 'profile.publicData'],
       'fields.image': [
         'variants.scaled-small',
         'variants.scaled-medium',

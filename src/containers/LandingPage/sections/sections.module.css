@@ -1062,3 +1062,18 @@
     border-radius: 24px;
   }
 }
+
+/* Text on navy sections must stay light even when the Console heading
+   primitive (navy by default) loads later in the CSS. */
+.title.onNavy,
+.titleStatic.onNavy,
+.roleTitle,
+.sectionNavy h2.onNavy,
+.sectionNavy h3.onNavy {
+  color: var(--colorWhite);
+}
+
+.description.onNavyMuted,
+.sectionNavy .onNavyMuted {
+  color: #d5dbe4;
+}

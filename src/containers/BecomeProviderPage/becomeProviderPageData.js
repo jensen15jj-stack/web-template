@@ -30,6 +30,7 @@ export const becomeProviderPageData = {
       sectionType: 'pageHero',
       sectionId: 'become-hero',
       imageSrc: providerPhoto,
+      imageLayout: 'side',
       imageAlt: 'A service member at home with his family',
       tone: 'navy',
       eyebrowText: 'For service members, veterans, and military family',

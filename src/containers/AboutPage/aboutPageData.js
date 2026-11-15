@@ -23,6 +23,7 @@ export const aboutPageData = {
       sectionType: 'pageHero',
       sectionId: 'about-hero',
       imageSrc: aboutPhoto,
+      imageLayout: 'side',
       imageAlt: 'Neighbors and military families greeting each other on a front walk',
       tone: 'tinted',
       eyebrowText: 'About us',

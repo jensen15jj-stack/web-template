@@ -169,7 +169,9 @@ export const SectionPageHero = props => {
     headingLevel,
     imageSrc,
     imageAlt = '',
+    imageLayout,
   } = props;
+  const isSide = !!imageSrc && imageLayout === 'side';
   const onNavy = tone === 'navy';
   // The page's main header is an h1; closing call-to-action bands are h2.
   const Heading = headingLevel === 2 ? 'h2' : 'h1';
@@ -178,36 +180,45 @@ export const SectionPageHero = props => {
       id={sectionId}
       className={classNames(css.section, onNavy ? css.sectionNavy : css.sectionTinted)}
     >
-      <div className={classNames(css.inner, css.pageHeroInner)}>
-        {eyebrowText ? (
-          <p className={classNames(css.eyebrow, { [css.eyebrowOnNavy]: onNavy })}>{eyebrowText}</p>
-        ) : null}
-        <Heading className={classNames(css.pageHeroTitle, { [css.onNavy]: onNavy })}>
-          {titleText}
-        </Heading>
-        {descriptionText ? (
-          <p className={classNames(css.pageHeroText, { [css.onNavyMuted]: onNavy })}>
-            {descriptionText}
-          </p>
-        ) : null}
-        {ctaHref || secondaryHref ? (
-          <div className={css.pageHeroActions}>
-            {ctaHref ? (
-              <Link href={ctaHref} rootClassName={onNavy ? css.missionButton : css.ctaSolid}>
-                {ctaLabel}
-              </Link>
-            ) : null}
-            {secondaryHref ? (
-              <Link
-                href={secondaryHref}
-                rootClassName={onNavy ? css.ctaOnNavyOutline : css.outlineButton}
-              >
-                {secondaryLabel}
-              </Link>
-            ) : null}
+      <div className={classNames(css.inner, isSide ? css.pageHeroSplit : css.pageHeroInner)}>
+        {isSide ? (
+          <div className={css.pageHeroSidePhotoFrame}>
+            <img className={css.pageHeroPhoto} src={imageSrc} alt={imageAlt} loading="eager" />
           </div>
         ) : null}
-        {imageSrc ? (
+        <div className={isSide ? css.pageHeroSplitCopy : css.pageHeroCopy}>
+          {eyebrowText ? (
+            <p className={classNames(css.eyebrow, { [css.eyebrowOnNavy]: onNavy })}>
+              {eyebrowText}
+            </p>
+          ) : null}
+          <Heading className={classNames(css.pageHeroTitle, { [css.onNavy]: onNavy })}>
+            {titleText}
+          </Heading>
+          {descriptionText ? (
+            <p className={classNames(css.pageHeroText, { [css.onNavyMuted]: onNavy })}>
+              {descriptionText}
+            </p>
+          ) : null}
+          {ctaHref || secondaryHref ? (
+            <div className={css.pageHeroActions}>
+              {ctaHref ? (
+                <Link href={ctaHref} rootClassName={onNavy ? css.missionButton : css.ctaSolid}>
+                  {ctaLabel}
+                </Link>
+              ) : null}
+              {secondaryHref ? (
+                <Link
+                  href={secondaryHref}
+                  rootClassName={onNavy ? css.ctaOnNavyOutline : css.outlineButton}
+                >
+                  {secondaryLabel}
+                </Link>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
+        {imageSrc && !isSide ? (
           <div className={css.pageHeroPhotoFrame}>
             <img className={css.pageHeroPhoto} src={imageSrc} alt={imageAlt} loading="eager" />
           </div>

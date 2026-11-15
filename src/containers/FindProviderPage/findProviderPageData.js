@@ -34,6 +34,7 @@ export const findProviderPageData = {
       sectionType: 'pageHero',
       sectionId: 'find-hero',
       imageSrc: findPhoto,
+      imageLayout: 'side',
       imageAlt: 'A military family carrying moving boxes to a truck',
       tone: 'navy',
       eyebrowText: 'Find a provider',

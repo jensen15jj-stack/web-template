@@ -14,7 +14,7 @@ import communityPhoto from './images/community-neighbors.jpg';
 import css from './sections.module.css';
 
 const SectionHeader = props => {
-  const { eyebrowId, eyebrowText, title, description, options, onNavy } = props;
+  const { eyebrowId, eyebrowText, titleId, title, description, options, onNavy } = props;
   const fieldOptions = pickFieldOptions(options);
   return (
     <header className={css.header}>
@@ -23,11 +23,17 @@ const SectionHeader = props => {
           {eyebrowId ? <FormattedMessage id={eyebrowId} /> : eyebrowText}
         </p>
       ) : null}
-      <Field
-        data={title}
-        className={classNames(css.title, { [css.onNavy]: onNavy })}
-        options={fieldOptions}
-      />
+      {titleId ? (
+        <h2 className={classNames(css.title, css.titleStatic, { [css.onNavy]: onNavy })}>
+          <FormattedMessage id={titleId} />
+        </h2>
+      ) : (
+        <Field
+          data={title}
+          className={classNames(css.title, { [css.onNavy]: onNavy })}
+          options={fieldOptions}
+        />
+      )}
       <Field
         data={description}
         className={classNames(css.description, { [css.onNavyMuted]: onNavy })}
@@ -309,7 +315,7 @@ export const SectionChecks = props => {
       <div className={css.inner}>
         <SectionHeader
           eyebrowId="LandingSections.checksEyebrow"
-          title={title}
+          titleId="LandingSections.checksTitle"
           description={description}
           options={options}
         />

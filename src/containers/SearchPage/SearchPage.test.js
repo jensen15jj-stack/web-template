@@ -297,7 +297,7 @@ const getSearchParams = config => {
       'publicData.priceVariationsEnabled',
       'publicData.priceVariants',
     ],
-    'fields.user': ['profile.displayName', 'profile.abbreviatedName'],
+    'fields.user': ['profile.displayName', 'profile.abbreviatedName', 'profile.publicData'],
     'fields.image': [
       'variants.scaled-small',
       'variants.scaled-medium',

@@ -120,6 +120,9 @@ export const ListingCard = props => {
     priceTooltip,
     priceMessage,
     authorName,
+    authorInitials,
+    serviceLine,
+    isQuote,
   } = translations;
 
   const classes = classNames(rootClassName || css.root, className);
@@ -178,11 +181,6 @@ export const ListingCard = props => {
         />
       )}
       <div className={css.info}>
-        {showPrice ? (
-          <div className={css.price} title={priceTooltip}>
-            {priceMessage}
-          </div>
-        ) : null}
         <div className={css.mainInfo}>
           {showListingImage && (
             <div className={classNames(css.title, { [css.lightText]: darkMode })}>
@@ -191,10 +189,26 @@ export const ListingCard = props => {
           )}
           {showAuthorInfo ? (
             <div className={classNames(css.authorInfo, { [css.lightText]: darkMode })}>
-              {authorName}
+              {authorInitials ? (
+                <span className={css.avatar} aria-hidden="true">
+                  {authorInitials}
+                </span>
+              ) : null}
+              <span className={css.authorText}>
+                <span className={css.authorName}>{authorName}</span>
+                {serviceLine ? <span className={css.serviceLine}>{serviceLine}</span> : null}
+              </span>
             </div>
           ) : null}
         </div>
+        {showPrice ? (
+          <div
+            className={classNames(css.price, { [css.priceQuote]: isQuote })}
+            title={priceTooltip}
+          >
+            {priceMessage}
+          </div>
+        ) : null}
       </div>
     </NamedLink>
   );

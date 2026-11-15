@@ -1591,5 +1591,9 @@
   "UserNav.accountSettings": "Account settings",
   "UserNav.profileSettings": "Profile settings",
   "UserNav.screenreader.userNav": "User profile navigation",
-  "UserNav.yourListings": "Your listings"
+  "UserNav.yourListings": "Your listings",
+  "ListingCard.anPerUnit": "{unitType, select, hour {/ hr} day {/ day} night {/ night} fixed {flat} other {}}",
+  "ListingCard.allInTooltip": "{formattedPrice}, includes service fee",
+  "ListingCard.requestQuote": "Request a quote",
+  "OrderPanel.allInNote": "Includes service fee. Itemized at checkout."
 }

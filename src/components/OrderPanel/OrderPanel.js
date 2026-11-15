@@ -23,6 +23,8 @@ import {
   LISTING_STATE_PUBLISHED,
 } from '../../util/types';
 import { formatMoney } from '../../util/currency';
+import { getAllInPrice, hasCustomerFee } from '../../util/allInPrice';
+import { useConfiguration } from '../../context/configurationContext';
 import { createSlug, parse, stringify } from '../../util/urlHelpers';
 import { userDisplayNameAsString } from '../../util/data';
 import {
@@ -141,8 +143,12 @@ const handleSubmit = (isOwnListing, isClosed, isDirectSubmit, onSubmit, history,
 const dateFormattingOptions = { month: 'short', day: 'numeric', weekday: 'short' };
 
 const PriceMaybe = props => {
+  // American Neighbor: show the all-in price (provider rate + customer service fee).
+  // Checkout itemizes the fee from the server's line items.
+  const config = useConfiguration();
+  const commission = config?.commission;
   const {
-    price,
+    price: providerPrice,
     publicData,
     validListingTypes,
     intl,
@@ -150,6 +156,8 @@ const PriceMaybe = props => {
     showCurrencyMismatch = false,
   } = props;
   const { listingType, unitType } = publicData || {};
+  const price = providerPrice ? getAllInPrice(providerPrice, commission) : providerPrice;
+  const showFeeNote = !!providerPrice && hasCustomerFee(commission);
 
   const foundListingTypeConfig = validListingTypes.find(conf => conf.listingType === listingType);
   const showPrice = displayPrice(foundListingTypeConfig);
@@ -190,6 +198,11 @@ const PriceMaybe = props => {
       <p className={css.price}>
         <FormattedMessage id="OrderPanel.price" values={{ priceValue, pricePerUnit }} />
       </p>
+      {showFeeNote ? (
+        <p className={css.allInNote}>
+          <FormattedMessage id="OrderPanel.allInNote" />
+        </p>
+      ) : null}
     </div>
   );
 };

@@ -127,3 +127,120 @@
   word-break: break-word;
   hyphens: auto;
 }
+
+/* ===== American Neighbor card styling ===== */
+.root {
+  background: var(--colorWhite);
+  border: 1px solid var(--anLine);
+  border-radius: var(--anRadiusCard);
+  box-shadow: var(--anShadowCard);
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  @media (--viewportMedium) {
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.aspectRatioWrapper {
+  border-radius: 0;
+
+  @media (--viewportMedium) {
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.rootForImage {
+  border: 0;
+  border-radius: 0;
+}
+
+.info {
+  padding: 14px 16px 16px 16px;
+  gap: 10px;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: var(--fontFamilyHeading);
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: var(--fontWeightBold);
+  color: var(--anNavy);
+}
+
+.authorInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+  padding-bottom: 0;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--anNavy);
+  color: var(--colorWhite);
+  font-size: 11px;
+  line-height: 28px;
+  font-weight: var(--fontWeightBold);
+  text-align: center;
+}
+
+.authorText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.authorName {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: var(--fontWeightMedium);
+  color: var(--anInk);
+}
+
+.serviceLine {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: var(--fontWeightSemiBold);
+  color: var(--anGoldDark);
+}
+
+.price {
+  border-top: 1px solid var(--anLine);
+  padding-top: 10px;
+  margin-bottom: 0;
+  color: var(--anMuted);
+}
+
+.priceValue {
+  font-family: var(--fontFamilyHeading);
+  font-size: 17px;
+  color: var(--anNavy);
+}
+
+.perUnit {
+  font-weight: var(--fontWeightMedium);
+  color: var(--anMuted);
+}
+
+.priceQuote {
+  font-family: var(--fontFamilyHeading);
+  font-weight: var(--fontWeightSemiBold);
+  color: var(--anNavy);
+}
+
+.title.lightText,
+.authorInfo.lightText .authorName {
+  color: var(--anNavy);
+}

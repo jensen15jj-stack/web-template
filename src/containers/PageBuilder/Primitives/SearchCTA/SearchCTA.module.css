@@ -99,17 +99,22 @@
 }
 
 .submitButton {
-  min-height: 40px;
+  /* American Neighbor: same size as every other site button (52px, 16px text) */
+  box-sizing: border-box;
+  min-height: 52px;
+  height: 52px;
   min-width: 86px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 0 26px;
+  font-size: 16px;
+  line-height: 20px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   @media (--viewportMedium) {
-    height: 48px;
+    height: 52px;
   }
   @media (--viewportLarge) {
     max-width: 270px;
   }
+}
 }

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { useConfiguration } from '../../context/configurationContext';
 import { useRouteConfiguration } from '../../context/routeConfigurationContext';
 import appSettings from '../../config/settings';
-import { useIntl } from '../../util/reactIntl';
+import { FormattedMessage, useIntl } from '../../util/reactIntl';
 import {
   NO_ACCESS_PAGE_INITIATE_TRANSACTIONS,
   NO_ACCESS_PAGE_POST_LISTINGS,
@@ -178,12 +178,22 @@ export const NoAccessPageComponent = props => {
             <p className={css.modalMessage}>
               {intl.formatMessage({ id: pageData.content }, { marketplaceName })}
             </p>
-            <CTAButtonMaybe
-              data={pageData.ctaData}
-              routeConfiguration={routeConfiguration}
-              userId={currentUser?.id?.uuid}
-              userEmail={currentUser?.attributes?.email}
-            />
+            {isPostingRightsPage ? (
+              <NamedLink
+                name="CMSPage"
+                params={{ pageId: 'get-verified' }}
+                className={css.verifyCtaButton}
+              >
+                <FormattedMessage id="NoAccessPage.postListings.cta" />
+              </NamedLink>
+            ) : (
+              <CTAButtonMaybe
+                data={pageData.ctaData}
+                routeConfiguration={routeConfiguration}
+                userId={currentUser?.id?.uuid}
+                userEmail={currentUser?.attributes?.email}
+              />
+            )}
           </div>
         </ResponsiveBackgroundImageContainer>
       </LayoutSingleColumn>

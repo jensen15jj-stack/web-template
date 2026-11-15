@@ -140,6 +140,8 @@
   min-height: 52px;
   padding: 0 26px;
   font-size: 16px;
+  font-family: var(--fontFamilyHeading);
+  font-weight: var(--fontWeightBold);
   background-color: var(--anNavy);
   border-radius: var(--anRadiusPill);
   color: white;

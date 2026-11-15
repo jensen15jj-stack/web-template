@@ -1077,3 +1077,24 @@
 .sectionNavy .onNavyMuted {
   color: #d5dbe4;
 }
+
+/* Button rows: never stretch buttons to the row height, and drop any
+   standalone top margin a button carries from another section. */
+.pageHeroActions {
+  align-items: center;
+}
+
+.pageHeroActions > a,
+.pageHeroActions > button {
+  margin-top: 0;
+}
+
+/* Same font for every button style */
+.outlineButton,
+.missionButton,
+.ctaSolid,
+.ctaOnNavyOutline,
+.twoWaysButton {
+  font-family: var(--fontFamilyHeading);
+  font-weight: var(--fontWeightBold);
+}

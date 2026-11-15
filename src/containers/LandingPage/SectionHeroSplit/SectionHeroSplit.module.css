@@ -297,3 +297,13 @@
   font-size: 16px;
   line-height: 20px;
 }
+
+.actions {
+  align-items: center;
+}
+
+.ctaButton,
+.secondaryButton {
+  font-family: var(--fontFamilyHeading);
+  font-weight: var(--fontWeightBold);
+}

@@ -106,6 +106,8 @@
   min-width: 86px;
   padding: 0 26px;
   font-size: 16px;
+  font-family: var(--fontFamilyHeading);
+  font-weight: var(--fontWeightBold);
   line-height: 20px;
   white-space: nowrap;
   overflow: hidden;

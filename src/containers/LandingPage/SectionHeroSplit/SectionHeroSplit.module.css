@@ -287,3 +287,13 @@
   font-weight: var(--fontWeightSemiBold);
   color: var(--anNavy);
 }
+
+/* ===== One button size everywhere (matches sections.module.css) ===== */
+.ctaButton,
+.secondaryButton {
+  box-sizing: border-box;
+  min-height: 52px;
+  padding: 0 26px;
+  font-size: 16px;
+  line-height: 20px;
+}

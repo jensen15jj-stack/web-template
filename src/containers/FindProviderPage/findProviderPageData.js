@@ -1,3 +1,4 @@
+import findPhoto from '../LandingPage/sections/images/find-moving.jpg';
 // Content for the Find a Provider page.
 
 const searchHref = category => `/s?pub_categoryLevel1=${category}`;
@@ -32,6 +33,8 @@ export const findProviderPageData = {
     {
       sectionType: 'pageHero',
       sectionId: 'find-hero',
+      imageSrc: findPhoto,
+      imageAlt: 'A military family carrying moving boxes to a truck',
       tone: 'navy',
       eyebrowText: 'Find a provider',
       titleText: 'Find trusted local help',

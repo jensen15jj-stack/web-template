@@ -164,11 +164,6 @@
 .visual {
   position: relative;
   min-width: 0;
-  padding-bottom: 28px;
-
-  @media (--viewportLarge) {
-    padding-left: 28px;
-  }
 }
 
 .photoFrame {
@@ -181,7 +176,7 @@
   box-shadow: var(--anShadowCard);
 
   @media (--viewportLarge) {
-    aspect-ratio: 5 / 4;
+    aspect-ratio: 3 / 2;
   }
 }
 
@@ -195,21 +190,14 @@
 }
 
 .checksCard {
+  /* Sits below the photo (no overlap) so the picture is never covered */
   position: relative;
-  margin: -56px 16px 0 16px;
+  margin: 16px 0 0 0;
   padding: 16px 18px;
   border: 1px solid var(--anLine);
   border-radius: var(--anRadiusCard);
   background-color: var(--colorWhite);
-  box-shadow: 0 18px 50px rgba(10, 35, 65, 0.18);
-
-  @media (--viewportLarge) {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 300px;
-    margin: 0;
-  }
+  box-shadow: var(--anShadowCard);
 }
 
 .checksTitle {

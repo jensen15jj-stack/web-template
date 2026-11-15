@@ -1,3 +1,4 @@
+import providerPhoto from '../LandingPage/sections/images/provider-family.jpg';
 // Content for the Become a Provider page.
 
 const card = (blockId, icon, title, text) => ({
@@ -28,6 +29,8 @@ export const becomeProviderPageData = {
     {
       sectionType: 'pageHero',
       sectionId: 'become-hero',
+      imageSrc: providerPhoto,
+      imageAlt: 'A service member at home with his family',
       tone: 'navy',
       eyebrowText: 'For service members, veterans, and military family',
       titleText: 'Build a business, not just a skill',

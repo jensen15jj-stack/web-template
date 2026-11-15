@@ -1,3 +1,4 @@
+import aboutPhoto from '../LandingPage/sections/images/about-community.jpg';
 // Content for the About page. Rendered with the shared custom section designs.
 
 const card = (blockId, icon, title, text) => ({
@@ -21,6 +22,8 @@ export const aboutPageData = {
     {
       sectionType: 'pageHero',
       sectionId: 'about-hero',
+      imageSrc: aboutPhoto,
+      imageAlt: 'Neighbors and military families greeting each other on a front walk',
       tone: 'tinted',
       eyebrowText: 'About us',
       titleText: 'Who we are',

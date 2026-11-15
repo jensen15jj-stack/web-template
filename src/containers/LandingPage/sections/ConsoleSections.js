@@ -167,6 +167,8 @@ export const SectionPageHero = props => {
     secondaryLabel,
     tone,
     headingLevel,
+    imageSrc,
+    imageAlt = '',
   } = props;
   const onNavy = tone === 'navy';
   // The page's main header is an h1; closing call-to-action bands are h2.
@@ -203,6 +205,11 @@ export const SectionPageHero = props => {
                 {secondaryLabel}
               </Link>
             ) : null}
+          </div>
+        ) : null}
+        {imageSrc ? (
+          <div className={css.pageHeroPhotoFrame}>
+            <img className={css.pageHeroPhoto} src={imageSrc} alt={imageAlt} loading="eager" />
           </div>
         ) : null}
       </div>

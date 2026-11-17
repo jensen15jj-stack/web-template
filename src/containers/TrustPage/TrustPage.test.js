@@ -14,7 +14,7 @@ describe('TrustPage', () => {
 
     await waitFor(() => {
       expect(getByRole('heading', { level: 1 })).toHaveTextContent('Trust and safety');
-      ['Identity', 'Military service', 'Military family', 'Background check'].forEach(badge => {
+      ['Military service', 'Reviewed by our team', 'Payouts verified by Stripe'].forEach(badge => {
         expect(getByRole('heading', { level: 3, name: badge })).toBeInTheDocument();
       });
       expect(getByText('Not a government service')).toBeInTheDocument();

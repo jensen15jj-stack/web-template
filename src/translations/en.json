@@ -601,7 +601,7 @@
   "LandingSections.faq.payment.question": "How do I pay?",
   "LandingSections.faq.providers.answer": "Members of the military community who run their own independent businesses. Each provider sets their own prices and hours.",
   "LandingSections.faq.providers.question": "Who are the providers?",
-  "LandingSections.faq.verification.answer": "Providers are reviewed before they can post a listing. Each completed check is shown as its own badge, so you can see exactly what was verified.",
+  "LandingSections.faq.verification.answer": "Before a provider can post a listing, our team confirms their military service and reviews their account, and Stripe verifies their payout details. We don't run background checks yet, so read reviews and use good judgment.",
   "LandingSections.faq.verification.question": "How are providers verified?",
   "LandingSections.faqEyebrow": "Questions",
   "LandingSections.faqLink": "More on trust and safety",
@@ -1063,12 +1063,9 @@
   "SeatsFilter.labelSelected": "Seats: {seatCount}",
   "SectionFooter.disclaimer": "American Neighbor is a private business. It is not affiliated with, endorsed by, or sponsored by the Department of Defense, any military branch or installation, or the Department of Veterans Affairs.",
   "SectionHeroSplit.becomeProvider": "Become a provider",
-  "SectionHeroSplit.check.background": "Background check",
-  "SectionHeroSplit.check.family": "Military family",
-  "SectionHeroSplit.check.identity": "Identity",
-  "SectionHeroSplit.check.military": "Military service",
-  "SectionHeroSplit.checksNote": "Each badge means one thing. See exactly which checks a provider has passed.",
-  "SectionHeroSplit.checksTitle": "Four separate checks",
+  "SectionHeroSplit.check.military": "Military service confirmed",
+  "SectionHeroSplit.checksNote": "We only show checks we actually do. We don't run background checks yet.",
+  "SectionHeroSplit.checksTitle": "Checked before they can list",
   "SectionHeroSplit.eyebrow": "Goldsboro, NC and the Seymour Johnson community",
   "SectionHeroSplit.howVerificationWorks": "How verification works",
   "SectionHeroSplit.trust.community": "Providers from the military community",
@@ -1595,5 +1592,7 @@
   "ListingCard.anPerUnit": "{unitType, select, hour {/ hr} day {/ day} night {/ night} fixed {flat} other {}}",
   "ListingCard.allInTooltip": "{formattedPrice}, includes service fee",
   "ListingCard.requestQuote": "Request a quote",
-  "OrderPanel.allInNote": "Includes service fee. Itemized at checkout."
+  "OrderPanel.allInNote": "Includes service fee. Itemized at checkout.",
+  "SectionHeroSplit.check.review": "Reviewed by our team",
+  "SectionHeroSplit.check.payout": "Payouts verified by Stripe"
 }

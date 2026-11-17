@@ -47,39 +47,33 @@ export const trustPageData = {
     {
       sectionType: 'columns',
       sectionId: 'badges',
-      numColumns: 4,
+      numColumns: 3,
       appearance: { fieldType: 'defaultAppearance' },
-      title: { fieldType: 'heading2', content: 'What each badge means' },
+      title: { fieldType: 'heading2', content: 'What we check before a provider can list' },
       description: {
         fieldType: 'paragraph',
         content:
-          'There is no single "verified" stamp. Each badge answers a different question, and a provider\'s profile shows only the checks that provider has completed.',
+          'Every provider on American Neighbor has passed these three checks. We do not run background checks at this time.',
       },
       callToAction: { fieldType: 'none' },
       blocks: [
         badgeBlock(
-          'badge-identity',
-          'Identity',
-          'A government photo ID was matched to this person.',
-          'It does not confirm military service or check criminal history.'
-        ),
-        badgeBlock(
           'badge-military-service',
           'Military service',
-          'Current or prior service in the U.S. Armed Forces was confirmed.',
-          'It does not confirm skills, licenses or character of service.'
+          'Our team reviewed proof of current or prior service in the U.S. Armed Forces.',
+          'It does not confirm skills, licenses, criminal history or character of service.'
         ),
         badgeBlock(
-          'badge-military-family',
-          'Military family',
-          'A spouse or dependent relationship to a service member or veteran was confirmed.',
-          'It does not mean this person served.'
+          'badge-team-review',
+          'Reviewed by our team',
+          'We reviewed the provider\'s account before allowing them to post listings.',
+          'It is not an inspection of their work or a guarantee of quality.'
         ),
         badgeBlock(
-          'badge-background-check',
-          'Background check',
-          'A background check was completed and reviewed.',
-          'It reflects one point in time and does not prove military history.'
+          'badge-stripe-payouts',
+          'Payouts verified by Stripe',
+          'The provider set up a payout account with our payment processor, Stripe, which verifies payout details.',
+          'It is not a background check and does not confirm skills or licenses.'
         ),
       ],
     },

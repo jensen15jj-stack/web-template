@@ -13,7 +13,8 @@ import css from './SectionHeroSplit.module.css';
 // The verification checks shown on the hero card.
 // Only list checks that American Neighbor actually performs.
 // Labels live in src/translations/en.json (SectionHeroSplit.check.*).
-const VERIFICATION_CHECKS = ['identity', 'military', 'family', 'background'];
+// Only checks American Neighbor actually performs at launch. Add a badge only when the check is real.
+const VERIFICATION_CHECKS = ['military', 'review', 'payout'];
 
 // Short reassurance points shown in a strip under the hero.
 const TRUST_POINTS = ['community', 'payment', 'reviews'];

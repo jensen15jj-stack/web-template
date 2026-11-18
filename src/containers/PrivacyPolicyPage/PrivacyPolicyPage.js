@@ -13,7 +13,8 @@ import { fetchFeaturedListings } from '../../ducks/featuredListings.duck';
 import { getListingsById } from '../../ducks/marketplaceData.duck';
 
 import { H1 } from '../PageBuilder/Primitives/Heading';
-import FallbackPage, { fallbackSections } from './FallbackPage';
+import FallbackPage from './FallbackPage';
+import { privacyPageData } from './privacyContent';
 import { ASSET_NAME } from './PrivacyPolicyPage.duck';
 
 const PageBuilder = loadable(() =>
@@ -43,8 +44,8 @@ const PrivacyPolicyContent = props => {
 
   const CustomHeading1 = props => <H1 as="h2" {...props} />;
 
-  const hasData = error === null && data;
-  const sectionsData = hasData ? data : fallbackSections;
+  // American Neighbor: the text is built into the app (see ./privacyContent.js), not fetched from Console.
+  const sectionsData = privacyPageData;
 
   return (
     <SectionBuilder
@@ -66,9 +67,9 @@ const PrivacyPolicyPageComponent = props => {
 
   return (
     <PageBuilder
-      pageAssetsData={pageAssetsData?.[camelize(ASSET_NAME)]?.data}
-      inProgress={inProgress}
-      error={error}
+      pageAssetsData={privacyPageData}
+      inProgress={false}
+      error={null}
       fallbackPage={<FallbackPage />}
       featuredListings={getFeaturedListingsProps(camelize(ASSET_NAME), props)}
     />

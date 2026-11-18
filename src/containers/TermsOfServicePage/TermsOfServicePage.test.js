@@ -8,7 +8,7 @@ import { TermsOfServicePageComponent } from './TermsOfServicePage';
 const { waitFor } = testingLibrary;
 
 describe('TermsOfServicePage', () => {
-  it('renders the Fallback page on error', async () => {
+  it('renders the built-in American Neighbor text even when Console content fails to load', async () => {
     const errorMessage = 'TermsOfServicePage failed';
     let e = new Error(errorMessage);
     e.type = 'error';
@@ -20,7 +20,7 @@ describe('TermsOfServicePage', () => {
 
     await waitFor(() => {
       expect(getByText('Terms of Service')).toBeInTheDocument();
-      expect(getByText('An error occurred')).toBeInTheDocument();
+      expect(getByText('1. Agreement')).toBeInTheDocument();
     });
   });
 });

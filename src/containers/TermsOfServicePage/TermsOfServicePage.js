@@ -24,7 +24,8 @@ const SectionBuilder = loadable(
   }
 );
 
-import FallbackPage, { fallbackSections } from './FallbackPage';
+import FallbackPage from './FallbackPage';
+import { termsPageData } from './termsContent';
 import { ASSET_NAME } from './TermsOfServicePage.duck';
 
 // This "content-only" component can be used in modals etc.
@@ -44,8 +45,8 @@ const TermsOfServiceContent = props => {
 
   const CustomHeading1 = props => <H1 as="h2" {...props} />;
 
-  const hasData = error === null && data;
-  const sectionsData = hasData ? data : fallbackSections;
+  // American Neighbor: the text is built into the app (see ./termsContent.js), not fetched from Console.
+  const sectionsData = termsPageData;
 
   return (
     <SectionBuilder
@@ -67,9 +68,9 @@ const TermsOfServicePageComponent = props => {
 
   return (
     <PageBuilder
-      pageAssetsData={pageAssetsData?.[camelize(ASSET_NAME)]?.data}
-      inProgress={inProgress}
-      error={error}
+      pageAssetsData={termsPageData}
+      inProgress={false}
+      error={null}
       fallbackPage={<FallbackPage />}
       featuredListings={getFeaturedListingsProps(camelize(ASSET_NAME), props)}
     />

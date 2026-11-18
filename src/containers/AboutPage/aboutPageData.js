@@ -47,13 +47,13 @@ export const aboutPageData = {
           'tribute',
           'medal',
           'A tribute to those who serve',
-          'We are dedicated to the active-duty service members, veterans, and military families who bring discipline, experience, and integrity to everyday work.'
+          'We are dedicated to the active-duty service members and veterans who bring discipline, experience, and integrity to everyday work.'
         ),
         card(
           'community',
           'home',
           'A two-sided community',
-          'Neighbors who need trusted help on one side; service members, veterans, and families providing for their own on the other. We connect the two — starting around installations, then anywhere in the country.'
+          'Neighbors who need trusted help on one side; service members and veterans providing for their own on the other. We connect the two — starting around installations, then anywhere in the country.'
         ),
       ],
     },

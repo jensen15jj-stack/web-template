@@ -65,7 +65,7 @@ export const findProviderPageData = {
         tile(
           'mounting',
           'Mounting & Installation',
-          'TVs, shelves, and fixtures hung right.',
+          'TVs, shelves, mirrors, and art hung right.',
           'mounting'
         ),
         tile('yard', 'Yard Work & Lawn Care', 'Mowing, trimming, cleanup, and upkeep.', 'yard'),

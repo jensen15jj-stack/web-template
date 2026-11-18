@@ -911,6 +911,11 @@
   font-weight: var(--fontWeightBold);
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  /* Darker gold on the white card for readable contrast (6:1); light gold stays on navy */
+  color: #7a5c14;
+}
+
+.twoWaysCardProvider .twoWaysEyebrow {
   color: var(--anGold);
 }
 

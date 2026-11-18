@@ -33,7 +33,7 @@ export const becomeProviderPageData = {
       imageLayout: 'side',
       imageAlt: 'A service member at home with his family',
       tone: 'navy',
-      eyebrowText: 'For service members, veterans, and military family',
+      eyebrowText: 'For service members and veterans',
       titleText: 'Build a business, not just a skill',
       descriptionText:
         'Turn your skills into a business and earn a sustainable income as an American Neighbor. List your services, set your own prices and hours, and get paid through the platform.',
@@ -80,7 +80,7 @@ export const becomeProviderPageData = {
         step(
           'verify',
           'Verification',
-          'We confirm your military background and that every provider meets our standards of integrity and professionalism.'
+          'We confirm your military service and review your account before you can post a listing.'
         ),
         step(
           'profile',

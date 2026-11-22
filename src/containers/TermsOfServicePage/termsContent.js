@@ -2,7 +2,7 @@
 // Source of truth: the "American Neighbor Terms of Service" Claude Doc. Update both together.
 
 const termsMarkdown = `
-Last updated: November 17, 2026
+Last updated: November 22, 2026
 
 ## 1. Agreement
 
@@ -49,7 +49,7 @@ American Neighbor is an online marketplace. It connects Customers with Providers
 
 **Booking.** A Customer sends a booking request. The booking is confirmed only when the Provider accepts it. Quote listings start with a request, and the price is agreed before booking.
 
-**Prices and the service fee.** Each Provider sets their own rate (the "Provider Rate"). Customers also pay American Neighbor a service fee of 10% of the Provider Rate, with a $3.00 minimum. Listings show the total a Customer pays: the Provider Rate plus the service fee. Checkout shows the Provider Rate and the service fee as separate lines. For each completed booking, the Provider receives the full Provider Rate, less only any refund or chargeback under these Terms. American Neighbor charges Providers no commission and pays its own payment-processing costs.
+**Prices and the service fee.** Each Provider sets their own rate (the "Provider Rate"). Customers also pay American Neighbor a service fee of 12% of the Provider Rate, with a $5.00 minimum. Listings show the total a Customer pays: the Provider Rate plus the service fee. Checkout shows the Provider Rate and the service fee as separate lines. For each completed booking, the Provider receives the full Provider Rate, less only any refund or chargeback under these Terms. American Neighbor charges Providers no commission and pays its own payment-processing costs.
 
 **Payments.** All payments run through our payment processor, Stripe. Customers pay by card at booking. Funds are held and released to the Provider after the booking is completed. Providers must set up a Stripe account to receive payouts, and agree to the [Stripe Connected Account Agreement](https://stripe.com/connect-account/legal).
 

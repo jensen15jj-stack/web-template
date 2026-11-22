@@ -5,7 +5,7 @@ import { Icon } from './icons';
 import css from './sections.module.css';
 
 // American Neighbor's public contact details.
-const CONTACT_EMAIL = 'americanneighbormail@gmail.com';
+const CONTACT_EMAIL = 'hello@americanneighbor.us';
 const INSTAGRAM_URL = 'https://www.instagram.com/american.neighbor/';
 const INSTAGRAM_HANDLE = '@american.neighbor';
 

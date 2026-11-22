@@ -8,6 +8,7 @@ import css from './sections.module.css';
 const CONTACT_EMAIL = 'hello@americanneighbor.us';
 const INSTAGRAM_URL = 'https://www.instagram.com/american.neighbor/';
 const INSTAGRAM_HANDLE = '@american.neighbor';
+const FACEBOOK_URL = 'https://www.facebook.com/profile.php?id=61596633369846';
 
 /**
  * Contact section: a message form plus direct contact methods.
@@ -116,6 +117,20 @@ const SectionContactForm = props => {
               <span>
                 <span className={css.contactMethodLabel}>Instagram</span>
                 <span className={css.contactMethodValue}>{INSTAGRAM_HANDLE}</span>
+              </span>
+            </a>
+            <a
+              className={css.contactMethod}
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className={css.contactMethodIcon}>
+                <Icon name="home" size={22} />
+              </span>
+              <span>
+                <span className={css.contactMethodLabel}>Facebook</span>
+                <span className={css.contactMethodValue}>American Neighbor</span>
               </span>
             </a>
             <p className={css.contactNote}>

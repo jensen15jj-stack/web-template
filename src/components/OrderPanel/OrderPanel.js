@@ -192,6 +192,11 @@ const PriceMaybe = props => {
       <div className={css.perUnitInCTA}>
         <FormattedMessage id="OrderPanel.perUnit" values={{ unitType }} />
       </div>
+      {showFeeNote ? (
+        <div className={css.allInNoteInCTA}>
+          <FormattedMessage id="OrderPanel.allInNoteShort" />
+        </div>
+      ) : null}
     </div>
   ) : (
     <div className={css.priceContainer}>

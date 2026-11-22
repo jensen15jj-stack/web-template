@@ -281,6 +281,14 @@
 }
 
 /* American Neighbor: note under the all-in price */
+.allInNoteInCTA {
+  margin: 2px 0 0 0;
+  font-size: 11px;
+  line-height: 14px;
+  color: var(--anMuted);
+  white-space: nowrap;
+}
+
 .allInNote {
   margin: 4px 0 0 0;
   font-size: 13px;

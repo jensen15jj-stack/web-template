@@ -116,25 +116,25 @@ export const becomeProviderPageData = {
       sectionType: 'iconCards',
       sectionId: 'become-learn',
       tone: 'white',
-      title: { fieldType: 'heading2', content: "What you'll build" },
+      title: { fieldType: 'heading2', content: 'What you get' },
       blocks: [
         card(
-          'foundations',
+          'keep-rate',
           'briefcase',
-          'Business foundations',
-          'Learn the basics of a business structure centered on the skills you have mastered.'
+          'Free to list. Keep your full rate.',
+          'There is no sign-up fee and no cut of your price. The customer pays a small service fee at checkout, so the rate you set is the rate you are paid.'
         ),
         card(
-          'strategy',
-          'screen',
-          'Market strategy',
-          'Develop a roadmap for your services, focused on local needs and what actually brings in work.'
+          'payments',
+          'shield',
+          'Secure payments, paid out to you',
+          'Customers pay online when you accept a booking. The payment is held until the job is done, then paid out to your bank account through Stripe.'
         ),
         card(
-          'customers',
-          'heart',
-          'Customer management',
-          'Master communication and service excellence to build long-term trust with your community.'
+          'reputation',
+          'star',
+          'A reputation that is yours',
+          'Every completed job can earn a review on your profile, so your track record follows you from one neighbor to the next.'
         ),
       ],
     },

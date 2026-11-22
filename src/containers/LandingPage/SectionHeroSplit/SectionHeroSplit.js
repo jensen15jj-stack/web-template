@@ -113,7 +113,7 @@ const SectionHeroSplit = props => {
             <img
               className={css.photo}
               src={heroPhoto}
-              alt=""
+              alt="Two neighbors building a backyard fence together"
               {...(fetchPriority ? { fetchPriority } : {})}
             />
           </div>

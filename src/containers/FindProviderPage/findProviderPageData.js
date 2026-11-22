@@ -84,7 +84,7 @@ export const findProviderPageData = {
         tile(
           'Trades',
           'Skilled Trades',
-          'Hands-on work from people trained to do it right.',
+          'Licensed electrical, plumbing, HVAC, and more.',
           'Trades'
         ),
         tile(

@@ -41,7 +41,7 @@ export const aboutPageData = {
           'mission',
           'shield',
           'Our mission',
-          'Give neighbors the confidence of knowing exactly who they are inviting into their homes and businesses, by building a verified military workforce they can trust.'
+          'Give neighbors confidence in who they are inviting into their homes and businesses, by building a verified military workforce they can trust.'
         ),
         card(
           'tribute',
